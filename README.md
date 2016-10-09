@@ -10,5 +10,19 @@ If you need to manage the state, configuration or network of a container the mod
 
 Check if the given **name** argument maps to a container on the host.
 
+```yaml
+- name: Check if container exists
+  container_exists:
+    name: spam
+  register: spam_container
+...
+# reuse it later
+...
+- name: Another important task
+  foo:
+    ...
+  when: spam_container.exists
+```
+
 [lxc_container]: http://docs.ansible.com/ansible/lxc_container_module.html
 [lilik_container]: https://github.com/LILiK-117bis/lilik_container 
